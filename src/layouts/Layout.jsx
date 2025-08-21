@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronRight, Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
+import ScrollToTop from '../components/ScrollToTop'
 
 export default function Layout() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -22,6 +23,9 @@ export default function Layout() {
 
     return (
         <>
+            {/* Composant pour scroll automatique vers le haut */}
+            <ScrollToTop />
+            
             {/* Header avec effet de scroll */}
             <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${
                 scrolled 
