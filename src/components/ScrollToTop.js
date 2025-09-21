@@ -9,7 +9,7 @@ export default function ScrollToTop() {
         window.scrollTo({
             top: 0,
             left: 0,
-            behavior: 'smooth' // Animation fluide (optionnel)
+            // behavior: 'smooth'    // Optionnel : pour un défilement fluide
         })
     }, [pathname])
 

@@ -16,8 +16,9 @@ const team = [
     name: 'Mamour Fall',
     role: 'Fondateur & CEO',
     image: 'team/mamour.jpg',
-    description: "Développeur fullstack, expert en applications web et mobiles, APIs et solutions cloud.",
-    gradient: 'from-blue-500 to-cyan-500'
+    description: "Développeur fullstack, expert en applications web et mobiles cross plateform, APIs et solutions cloud.",
+    gradient: 'from-blue-500 to-cyan-500',
+    email: 'mamourf958@gmail.com',
   },
   {
     id: 2,
@@ -25,15 +26,17 @@ const team = [
     role: 'CTO - Responsable Technique',
     image: 'team/abdoul.jpg',
     description: 'Technicien réseau et infrastructure, il gère l\'installation et la configuration des systèmes informatiques.',
-    gradient: 'from-green-500 to-emerald-500'
+    gradient: 'from-green-500 to-emerald-500',
+    email: 'abdoulaziz@gmail.com',
   },
   {
     id: 3,
-    name: 'Fama Ndiaye',
+    name: 'Christina Duarte',
     role: 'CMO - Responsable Marketing',
-    image: 'team/fama.jpg',
+    image: 'team/christina.jpg',
     description: 'Spécialiste en marketing digital, elle supervise la stratégie de communication et de visibilité de l\'entreprise.',
-    gradient: 'from-purple-500 to-pink-500'
+    gradient: 'from-purple-500 to-pink-500',
+    email: 'yande@gmail.com',
   },
 ];
 
@@ -133,14 +136,17 @@ export default function TeamSection() {
                 </p>
 
                 {/* Contact Button */}
-                <motion.button
-                  className={`w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r ${member.gradient} text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>Contacter</span>
-                </motion.button>
+                {member.email && (
+                  <motion.a
+                    href={`mailto:${member.email}`}
+                    className={`w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r ${member.gradient} text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Contacter</span>
+                  </motion.a>
+                )}
               </div>
 
               {/* Subtle hover glow */}

@@ -5,12 +5,12 @@ import { ExternalLink, Github, Calendar, Users, Zap, Filter, Search, ArrowRight,
 const projects = [
   {
     id: 1,
-    title: "Kiwano - E-commerce Éco-Responsable",
+    title: "Kiwano - E-commerce ERG",
     category: "E-commerce",
     tags: ["Flutter", "Dart", "Nest JS", "Postgres"],
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=80",
-    description: "Plateforme mobile cross plateforme pour la vente de produits éco-responsables, avec intégration de paiement et gestion des stocks.",
-    longDescription: "Une solution e-commerce innovante permettant aux utilisateurs de découvrir et d'acheter des produits éco-responsables via une application mobile fluide. Intégration complète avec un backend robuste pour la gestion des commandes, des stocks et des paiements sécurisés.",
+    description: "Plateforme mobile cross plateforme pour PME PMI particulier, avec intégration de paiement et gestion des stocks.",
+    longDescription: "Une solution innovante permettant aux utilisateurs d'enregistrer et de gérer leurs produits, avec une interface intuitive et des fonctionnalités avancées de gestion des stocks et des paiements. Conçue pour les PME et les particuliers souhaitant optimiser leur processus de vente.",
     duration: "4 mois",
     team: "5 personnes",
     technologies: ["Flutter", "Darte", "Nest JS", "Postgres", "GitHub", "Docker"],
@@ -26,7 +26,7 @@ const projects = [
   {
     id: 2,
     title: "Horizon Teranga - Tourisme",
-    category: "Santé",
+    category: "Tourisme",
     tags: ["Flutter", "Dart", "Firebase", "PostgreSQL"],
     image: "https://images.unsplash.com/photo-1681225241052-ac67808b0c62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNlbmVnYWx8ZW58MHx8MHx8fDA%3D",
     description: "Application de consultation de lieux touristiques avec géolocalisation, itinéraires et recommandations personnalisées.",
@@ -65,10 +65,10 @@ const projects = [
   },
   {
     id: 4,
-    title: "EduPlatform - Formation en Ligne",
-    category: "Éducation",
-    tags: ["Next.js", "GraphQL", "Prisma", "MySQL"],
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80",
+    title: "Food Ordering API - Finance",
+    category: "Finance",
+    tags: ["Nest.js", "API Rest", "Prisma", "MySQL"],
+    image: "https://images.unsplash.com/photo-1609427955204-d0a737cb2c1a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMG9yZGVyaW5nfGVufDB8fDB8fHww",
     description: "Plateforme d'apprentissage interactive avec cours vidéo, quizz et système de certification.",
     longDescription: "Environnement d'apprentissage numérique complet avec streaming vidéo adaptatif, système de quiz interactifs, suivi des progrès en temps réel et certification automatisée.",
     duration: "7 mois",
@@ -85,15 +85,15 @@ const projects = [
   },
   {
     id: 5,
-    title: "SmartCity Dashboard",
-    category: "IoT",
-    tags: ["React", "D3.js", "InfluxDB", "MQTT"],
-    image: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=800&auto=format&fit=crop&q=80",
+    title: "Weatherly",
+    category: "Méteo",
+    tags: ["Dart", "Flutter", "OpenWeather", "API Rest"],
+    image: "https://images.unsplash.com/photo-1561484930-998b6a7b22e8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Dashboard temps réel pour la gestion intelligente des infrastructures urbaines.",
     longDescription: "Solution IoT complète pour villes intelligentes avec collecte de données en temps réel, visualisations avancées, prédictions basées sur l'IA et système d'alertes automatisé.",
     duration: "8 mois",
     team: "8 personnes",
-    technologies: ["React", "D3.js", "InfluxDB", "MQTT", "TensorFlow", "Docker"],
+    technologies: ["Dart", "Flutter", "API Rest"],
     results: {
       performance: "10M+ points de données/jour",
       users: "50+ municipalités",
@@ -103,29 +103,29 @@ const projects = [
     githubUrl: "#",
     featured: true
   },
-  {
-    id: 6,
-    title: "ArtGallery NFT",
-    category: "Blockchain",
-    tags: ["React", "Web3.js", "Solidity", "IPFS"],
-    image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&auto=format&fit=crop&q=80",
-    description: "Marketplace NFT pour artistes digitaux avec smart contracts et paiements crypto.",
-    longDescription: "Plateforme NFT révolutionnaire permettant aux artistes de créer, vendre et gérer leurs œuvres numériques avec smart contracts sécurisés et intégration multi-blockchain.",
-    duration: "6 mois",
-    team: "5 personnes",
-    technologies: ["React", "Web3.js", "Solidity", "IPFS", "Ethereum", "Polygon"],
-    results: {
-      performance: "Gas fees -70%",
-      users: "3k+ artistes",
-      growth: "€2M+ de volume"
-    },
-    liveUrl: "#",
-    githubUrl: "#",
-    featured: false
-  }
+  // {
+  //   id: 6,
+  //   title: "ArtGallery NFT",
+  //   category: "Blockchain",
+  //   tags: ["React", "Web3.js", "Solidity", "IPFS"],
+  //   image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&auto=format&fit=crop&q=80",
+  //   description: "Marketplace NFT pour artistes digitaux avec smart contracts et paiements crypto.",
+  //   longDescription: "Plateforme NFT révolutionnaire permettant aux artistes de créer, vendre et gérer leurs œuvres numériques avec smart contracts sécurisés et intégration multi-blockchain.",
+  //   duration: "6 mois",
+  //   team: "5 personnes",
+  //   technologies: ["React", "Web3.js", "Solidity", "IPFS", "Ethereum", "Polygon"],
+  //   results: {
+  //     performance: "Gas fees -70%",
+  //     users: "3k+ artistes",
+  //     growth: "€2M+ de volume"
+  //   },
+  //   liveUrl: "#",
+  //   githubUrl: "#",
+  //   featured: false
+  // }
 ];
 
-const categories = ["Tous", "E-commerce", "Santé", "Finance", "Éducation", "IoT", "Blockchain"];
+const categories = ["Tous", "E-commerce", "Tourisme", "Finance", "Éducation", "Méteo"];
 
 export default function Realisation() {
   const [selectedCategory, setSelectedCategory] = useState("Tous");

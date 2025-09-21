@@ -4,6 +4,7 @@ import ServicesSection from '../components/ServicesSection';
 import TeamSection from '../components/TeamSection';
 import StatsSection from '../components/StatsSection';
 import GalerySection from '../components/GalerySection';
+import WhatsAppButton from '../components/WhatsAppButton';
 
 export default function Home() {
   return (
@@ -11,9 +12,12 @@ export default function Home() {
       <HeroSlider />
       <PresentationSection />
       <ServicesSection />
-      <TeamSection />
+      <section id="team">
+        <TeamSection />
+      </section>
       <StatsSection />
       <GalerySection />
+      <WhatsAppButton />
     </main>
   );
 }

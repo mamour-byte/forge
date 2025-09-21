@@ -344,8 +344,9 @@ export default function ServicesSection() {
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:shadow-xl hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-            >
+            ><a href="contact">
               <span>Consultation gratuite</span>
+              </a>
               <ArrowRight className="w-5 h-5" />
             </motion.button>
           </div>

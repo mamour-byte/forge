@@ -75,11 +75,11 @@ export default function Contact() {
   ];
 
   const budgetRanges = [
-    'Moins de 5k€',
-    '5k€ - 15k€',
-    '15k€ - 30k€',
-    '30k€ - 50k€',
-    'Plus de 50k€',
+    'Moins de 75k F cfa',
+    '75k - 150k F cfa',
+    '150k - 500k F cfa',
+    '500k - 800k F cfa',
+    'Plus de 800k F cfa',
     'À discuter'
   ];
 
@@ -169,7 +169,7 @@ export default function Contact() {
                 icon: <Phone size={32} />,
                 title: "Téléphone",
                 description: "Discutons directement de votre projet",
-                contact: "+33 1 23 45 67 89",
+                contact: "+221 77 856 98 23",
                 action: "Appeler maintenant",
                 color: "green"
               },

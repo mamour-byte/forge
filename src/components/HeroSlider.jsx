@@ -3,25 +3,30 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import TeamSection from '../components/TeamSection';
+import { Link } from 'react-router-dom';
 
 const slides = [
   {
     image: 'https://images.unsplash.com/photo-1545665277-5937489579f2?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0',
     title: 'Des solutions digitales sur mesure',
     subtitle: 'Transformez vos idées en réalité avec notre expertise technique',
-    cta: 'Découvrir nos services'
+    cta: 'Découvrir nos services',
+    href: '/services'
   },
   {
     image: 'https://plus.unsplash.com/premium_photo-1683147803878-48aaeed6684f?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0',
     title: 'Une équipe au service de votre vision',
     subtitle: 'Des professionnels passionnés pour concrétiser vos projets',
-    cta: 'Rencontrer l\'équipe'
+    cta: 'Rencontrer l\'équipe',
+    href: '#team'
   },
   {
     image: 'https://images.unsplash.com/photo-1729092087821-55d9135e4cf7?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0',
     title: 'Innovation, performance, simplicité',
     subtitle: 'L\'alliance parfaite entre technologie de pointe et ergonomie',
-    cta: 'Voir nos réalisations'
+    cta: 'Voir nos réalisations',
+    href: '/realisation'
   },
 ];
 
@@ -144,10 +149,23 @@ export default function HeroSlider() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="pt-4"
             >
-              <button className="group/btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20 backdrop-blur-sm relative overflow-hidden">
-                <span className="relative z-10">{slides[index].cta}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 translate-x-full group-hover/btn:translate-x-[-200%] transition-transform duration-700" />
-              </button>
+              {slides[index].href.startsWith('#') ? (
+                <a
+                  href={slides[index].href}
+                  className="group/btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20 backdrop-blur-sm relative overflow-hidden"
+                >
+                  <span className="relative z-10">{slides[index].cta}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 translate-x-full group-hover/btn:translate-x-[-200%] transition-transform duration-700" />
+                </a>
+              ) : (
+                <Link
+                  to={slides[index].href}
+                  className="group/btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20 backdrop-blur-sm relative overflow-hidden"
+                >
+                  <span className="relative z-10">{slides[index].cta}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 translate-x-full group-hover/btn:translate-x-[-200%] transition-transform duration-700" />
+                </Link>
+              )}
             </motion.div>
           </motion.div>
         </AnimatePresence>

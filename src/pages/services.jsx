@@ -160,29 +160,29 @@ const services = [
   },
   {
     id: 6,
-    title: "Maintenance & Support",
-    shortDescription: "Maintenance continue et support technique de vos solutions.",
+    title: "Installation Réseau & Sécurité",
+    shortDescription: "Installation de tout type de reseau Informatique et vidéo Surveillance",
     icon: <Settings className="w-8 h-8" />,
     color: "indigo",
-    category: "Support",
+    category: "Réseau & Sécurité",
     features: [
-      "Maintenance préventive",
-      "Corrections de bugs",
-      "Mises à jour sécurité",
-      "Support technique",
+      "Administartion Réseau",
+      "Installation Vidéo Surveillance",
+      "Interphone , Vidéophone & Contrôle d'accès",
+      "Maintenance Informatique",
       "Monitoring 24/7",
-      "Évolutions fonctionnelles"
+      ""
     ],
-    technologies: ["Monitoring Tools", "Version Control", "Automation"],
+    technologies: ["Ubiquiti", "Mikrotik", "Cisco", "Hikvision", "Dahua", "Axis"],
     deliverables: [
-      "SLA défini",
+      "",
       "Rapports mensuels",
       "Hotline dédiée",
       "Interventions d'urgence",
       "Conseils d'évolution"
     ],
     timeline: "Service continu",
-    startingPrice: "À partir de 500€/mois"
+    startingPrice: ""
   }
 ];
 
@@ -371,8 +371,9 @@ export default function Services() {
                     
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <div>
-                        <div className="text-sm text-gray-500">À partir de</div>
-                        <div className="font-bold text-gray-900">{service.startingPrice}</div>
+                        {/* prix service  */}
+                        {/* <div className="text-sm text-gray-500">À partir de</div> */}
+                        {/* <div className="font-bold text-gray-900">{service.startingPrice}</div> */}
                       </div>
                       
                       <button 
@@ -563,10 +564,11 @@ export default function Services() {
                     <div className="text-sm text-gray-500 mb-1">Délai estimé</div>
                     <div className="text-lg font-semibold text-gray-900">{selectedService.timeline}</div>
                   </div>
-                  <div>
+                  {/* prix de services  */}
+                  {/* <div>
                     <div className="text-sm text-gray-500 mb-1">Tarif</div>
                     <div className="text-lg font-semibold text-gray-900">{selectedService.startingPrice}</div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4 border-t border-gray-200">
