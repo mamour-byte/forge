@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronRight, Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
 import ScrollToTop from '../components/ScrollToTop'
+import CookieBanner from '../components/CookieBanner'
+import CookieSettings from '../components/CookieSettings'
 
 export default function Layout() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -207,6 +209,10 @@ export default function Layout() {
                     </div>
                 </div>
             </footer>
+
+            {/* Système de gestion des cookies */}
+            <CookieBanner />
+            <CookieSettings />
         </>
     )
 }
