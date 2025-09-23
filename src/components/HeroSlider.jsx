@@ -8,21 +8,21 @@ import { Link } from 'react-router-dom';
 
 const slides = [
   {
-    image: 'https://images.unsplash.com/photo-1545665277-5937489579f2?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0',
+    image: 'https://images.unsplash.com/photo-1545665277-5937489579f2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0',
     title: 'Des solutions digitales sur mesure',
     subtitle: 'Transformez vos idées en réalité avec notre expertise technique',
     cta: 'Découvrir nos services',
     href: '/services'
   },
   {
-    image: 'https://plus.unsplash.com/premium_photo-1683147803878-48aaeed6684f?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0',
+    image: 'https://plus.unsplash.com/premium_photo-1683147803878-48aaeed6684f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0',
     title: 'Une équipe au service de votre vision',
     subtitle: 'Des professionnels passionnés pour concrétiser vos projets',
     cta: 'Rencontrer l\'équipe',
     href: '#team'
   },
   {
-    image: 'https://images.unsplash.com/photo-1729092087821-55d9135e4cf7?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0',
+    image: 'https://images.unsplash.com/photo-1729092087821-55d9135e4cf7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0',
     title: 'Innovation, performance, simplicité',
     subtitle: 'L\'alliance parfaite entre technologie de pointe et ergonomie',
     cta: 'Voir nos réalisations',
@@ -44,14 +44,14 @@ export default function HeroSlider() {
     }, 6000);
 
     const progressInterval = setInterval(() => {
-      setProgress((prev) => (prev + 100/60)); // 60 updates over 6 seconds
-    }, 100);
+      setProgress((prev) => (prev + 100/30)); // 30 updates over 6 seconds (moins fréquent)
+    }, 200);
 
     return () => {
       clearInterval(interval);
       clearInterval(progressInterval);
     };
-  }, [isPlaying, index]);
+  }, [isPlaying]);
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % slides.length);
@@ -78,10 +78,10 @@ export default function HeroSlider() {
       <AnimatePresence mode="wait">
         <motion.div
           key={slides[index].image}
-          initial={{ scale: 1.1, opacity: 0 }}
+          initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
+          exit={{ scale: 0.98, opacity: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${slides[index].image})` }}
         >
@@ -117,17 +117,17 @@ export default function HeroSlider() {
         <AnimatePresence mode="wait">
           <motion.div
             key={slides[index].title}
-            initial={{ y: 60, opacity: 0 }}
+            initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -30, opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            exit={{ y: -15, opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-6"
           >
             <motion.h1 
               className="text-white text-5xl md:text-7xl lg:text-8xl font-bold leading-tight"
-              initial={{ y: 40, opacity: 0 }}
+              initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <span className="bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent">
                 {slides[index].title}
@@ -136,17 +136,17 @@ export default function HeroSlider() {
             
             <motion.p 
               className="text-blue-100 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed"
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               {slides[index].subtitle}
             </motion.p>
             
             <motion.div
-              initial={{ y: 30, opacity: 0 }}
+              initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="pt-4"
             >
               {slides[index].href.startsWith('#') ? (

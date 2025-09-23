@@ -31,7 +31,7 @@ const team = [
   },
   {
     id: 3,
-    name: 'Christina Duarte',
+    name: 'Yande Traore',
     role: 'CMO - Responsable Marketing',
     image: 'team/christina.jpg',
     description: 'Spécialiste en marketing digital, elle supervise la stratégie de communication et de visibilité de l\'entreprise.',
@@ -46,8 +46,8 @@ export default function TeamSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.05
       }
     }
   };
@@ -55,13 +55,13 @@ export default function TeamSection() {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 40
+      y: 20
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut"
       }
     }
@@ -72,9 +72,9 @@ export default function TeamSection() {
       {/* Header */}
       <motion.div 
         className="text-center mb-16"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
         <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -160,9 +160,9 @@ export default function TeamSection() {
       {/* Simple CTA */}
       <motion.div 
         className="text-center mt-16"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
       >
         <motion.button

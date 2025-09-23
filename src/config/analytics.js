@@ -1,7 +1,7 @@
 // Configuration Google Analytics
 export const GA_CONFIG = {
-  // Remplacez par votre ID de mesure Google Analytics
-  MEASUREMENT_ID: 'G-XXXXXXXXXX', // À remplacer par votre vrai ID
+  // ID de mesure Google Analytics
+  MEASUREMENT_ID: 'G-505884245',
   
   // Configuration par défaut
   DEFAULT_CONFIG: {

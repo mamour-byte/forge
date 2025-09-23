@@ -2,3 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Optimisations de performance */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimisation des animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimisation des images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimisation des transitions */
+.transition-optimized {
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/* Suppression des animations continues pour les performances */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+

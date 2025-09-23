@@ -24,7 +24,12 @@ import {
   Cpu,
   MonitorSpeaker,
   Layers,
-  X
+  X,
+  Clock,
+  User,
+  Mail,
+  Phone,
+  MapPin
 } from 'lucide-react';
 
 const services = [
@@ -227,12 +232,49 @@ const stats = [
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
   const [activeCategory, setActiveCategory] = useState("Tous");
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+  const [appointmentForm, setAppointmentForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    service: '',
+    date: '',
+    time: '',
+    message: ''
+  });
   
   const categories = ["Tous", "Développement", "Mobile", "Infrastructure", "Design", "Conseil", "Support"];
   
   const filteredServices = activeCategory === "Tous" 
     ? services 
     : services.filter(service => service.category === activeCategory);
+
+  const handleAppointmentSubmit = (e) => {
+    e.preventDefault();
+    // Ici vous pouvez ajouter la logique pour envoyer le formulaire
+    console.log('Formulaire de rendez-vous:', appointmentForm);
+    alert('Votre demande de rendez-vous a été envoyée avec succès !');
+    setShowAppointmentModal(false);
+    setAppointmentForm({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      service: '',
+      date: '',
+      time: '',
+      message: ''
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setAppointmentForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -292,9 +334,9 @@ export default function Services() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -328,10 +370,10 @@ export default function Services() {
                 <motion.div
                   key={service.id}
                   layout
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100"
                 >
                   <div className="p-8">
@@ -396,9 +438,9 @@ export default function Services() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -413,9 +455,9 @@ export default function Services() {
             {processes.map((process, index) => (
               <motion.div
                 key={process.step}
-                initial={{ y: 30, opacity: 0 }}
+                initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 className="relative text-center group"
               >
                 {index < processes.length - 1 && (
@@ -450,9 +492,9 @@ export default function Services() {
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="space-y-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
@@ -468,7 +510,10 @@ export default function Services() {
                 <MessageCircle size={20} />
                 <span>Démarrer un projet</span>
               </button>
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors flex items-center space-x-2">
+              <button 
+                onClick={() => setShowAppointmentModal(true)}
+                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors flex items-center space-x-2"
+              >
                 <Calendar size={20} />
                 <span>Planifier un appel</span>
               </button>
@@ -574,13 +619,225 @@ export default function Services() {
                 <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4 border-t border-gray-200">
                   <button className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors flex-1">
                     <MessageCircle size={18} />
-                    <span>Demander un devis</span>
+                    <span><a href="contact">Demander un devis</a></span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-medium transition-colors">
+                  <button 
+                    onClick={() => {
+                      setAppointmentForm(prev => ({ ...prev, service: selectedService.title }));
+                      setSelectedService(null);
+                      setShowAppointmentModal(true);
+                    }}
+                    className="flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-medium transition-colors"
+                  >
                     <Calendar size={18} />
                     <span>Planifier un appel</span>
                   </button>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Appointment Modal */}
+      <AnimatePresence>
+        {showAppointmentModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowAppointmentModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 50 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center">
+                      <Calendar className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900">Planifier un rendez-vous</h2>
+                      <p className="text-gray-600">Réservez un appel avec notre équipe</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowAppointmentModal(false)}
+                    className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <form onSubmit={handleAppointmentSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <User size={16} className="inline mr-2" />
+                        Nom complet *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={appointmentForm.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                        placeholder="Votre nom complet"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <Mail size={16} className="inline mr-2" />
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={appointmentForm.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                        placeholder="votre@email.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <Phone size={16} className="inline mr-2" />
+                        Téléphone *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={appointmentForm.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                        placeholder="+33 6 12 34 56 78"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <MapPin size={16} className="inline mr-2" />
+                        Entreprise
+                      </label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={appointmentForm.company}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                        placeholder="Nom de votre entreprise"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <Settings size={16} className="inline mr-2" />
+                      Service d'intérêt
+                    </label>
+                    <select
+                      name="service"
+                      value={appointmentForm.service}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    >
+                      <option value="">Sélectionnez un service</option>
+                      {services.map((service) => (
+                        <option key={service.id} value={service.title}>
+                          {service.title}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <Calendar size={16} className="inline mr-2" />
+                        Date préférée *
+                      </label>
+                      <input
+                        type="date"
+                        name="date"
+                        value={appointmentForm.date}
+                        onChange={handleInputChange}
+                        required
+                        min={new Date().toISOString().split('T')[0]}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <Clock size={16} className="inline mr-2" />
+                        Heure préférée *
+                      </label>
+                      <select
+                        name="time"
+                        value={appointmentForm.time}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      >
+                        <option value="">Sélectionnez une heure</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <MessageCircle size={16} className="inline mr-2" />
+                      Message (optionnel)
+                    </label>
+                    <textarea
+                      name="message"
+                      value={appointmentForm.message}
+                      onChange={handleInputChange}
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                      placeholder="Décrivez brièvement votre projet ou vos questions..."
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setShowAppointmentModal(false)}
+                      className="flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-medium transition-colors flex-1"
+                    >
+                      <X size={18} />
+                      <span>Annuler</span>
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors flex-1"
+                    >
+                      <Calendar size={18} />
+                      <span>Planifier le rendez-vous</span>
+                    </button>
+                  </div>
+                </form>
               </div>
             </motion.div>
           </motion.div>

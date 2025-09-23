@@ -11,11 +11,20 @@ export default function Layout() {
     const location = useLocation()
 
     useEffect(() => {
+        let ticking = false;
+        
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50)
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    setScrolled(window.scrollY > 50);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [])
 
     // Fermer le menu mobile lors du changement de route
@@ -112,8 +121,8 @@ export default function Layout() {
             <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-black relative overflow-hidden">
                 {/* Decoration Background */}
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000" />
+                    <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl" />
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl" />
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-6 py-16">
