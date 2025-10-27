@@ -168,7 +168,7 @@ const services = [
     title: "Installation Réseau & Sécurité",
     shortDescription: "Installation de tout type de reseau Informatique et vidéo Surveillance",
     icon: <Settings className="w-8 h-8" />,
-    color: "indigo",
+    color: "brown",
     category: "Réseau & Sécurité",
     features: [
       "Administartion Réseau",
@@ -724,7 +724,7 @@ export default function Services() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                        placeholder="+33 6 12 34 56 78"
+                        placeholder="+221 77 956 25 48"
                       />
                     </div>
                     

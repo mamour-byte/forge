@@ -15,9 +15,12 @@ import {
   ArrowRight,
   Github,
   Linkedin,
-  Twitter
+  Twitter,
+  Instagram,
+  Facebook
 } from 'lucide-react';
 import { form } from 'framer-motion/client';
+import { BsWhatsapp } from 'react-icons/bs';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -460,8 +463,14 @@ export default function Contact() {
                     <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-gray-800 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300">
                       <Github size={20} />
                     </a>
+                    <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-red-500   hover:text-white rounded-xl flex items-center justify-center transition-all duration-300">
+                      <Instagram size={20} />
+                    </a>
+                    <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-green-400 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300">
+                      <BsWhatsapp size={20} />
+                    </a>
                     <a href="#" className="w-10 h-10 bg-gray-100 hover:bg-blue-400 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300">
-                      <Twitter size={20} />
+                      <Facebook size={20} />
                     </a>
                   </div>
                 </div>

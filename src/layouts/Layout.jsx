@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronRight, Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
+import { Menu, X, ChevronRight, Mail, Phone, MapPin, Github, Linkedin, Twitter, ChevronDown } from 'lucide-react'
 import ScrollToTop from '../components/ScrollToTop'
 import CookieBanner from '../components/CookieBanner'
 import CookieSettings from '../components/CookieSettings'
@@ -8,6 +8,7 @@ import CookieSettings from '../components/CookieSettings'
 export default function Layout() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
+    const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
     const location = useLocation()
 
     useEffect(() => {
@@ -30,6 +31,7 @@ export default function Layout() {
     // Fermer le menu mobile lors du changement de route
     useEffect(() => {
         setMenuOpen(false)
+        setServicesDropdownOpen(false)
     }, [location])
 
     return (
@@ -61,7 +63,8 @@ export default function Layout() {
                         {/* Desktop Navigation */}
                         <div className="hidden lg:flex items-center space-x-1">
                             <NavLink to="/" label="Accueil" />
-                            <NavLink to="/services" label="Services" />
+                            <ServicesDropdown />
+                            <NavLink to="/products" label="Produits" />
                             <NavLink to="/realisation" label="Réalisations" />
                             <NavLink to="/contact" label="Contact" />
                             
@@ -94,7 +97,8 @@ export default function Layout() {
                     } overflow-hidden`}>
                         <div className="py-4 space-y-2 border-t border-gray-100">
                             <MobileNavLink to="/" label="Accueil" />
-                            <MobileNavLink to="/services" label="Services" />
+                            <MobileServicesDropdown />
+                            <MobileNavLink to="/products" label="Produits" />
                             <MobileNavLink to="/realisation" label="Réalisations" />
                             <MobileNavLink to="/contact" label="Contact" />
                             
@@ -289,5 +293,143 @@ function SocialLink({ href, icon }) {
                 {icon}
             </div>
         </a>
+    )
+}
+
+function ServicesDropdown() {
+    const [isOpen, setIsOpen] = useState(false)
+    const location = useLocation()
+    
+    const isActive = location.pathname === '/services' || location.pathname === '/networks' || location.pathname === '/security'
+    
+    return (
+        <div className="relative">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`relative px-4 py-2.5 rounded-xl font-medium transition-all duration-200 group flex items-center space-x-2 ${
+                    isActive 
+                        ? 'text-blue-600 bg-blue-50' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+            >
+                <span>Services</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {isOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                    <Link 
+                        to="/services" 
+                        className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-sm font-bold">M</span>
+                        </div>
+                        <div>
+                            <div className="font-medium text-gray-900">Applications Mobile/Web</div>
+                            <div className="text-sm text-gray-500">Développement d'applications</div>
+                        </div>
+                    </Link>
+                    
+                    <Link 
+                        to="/networks" 
+                        className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-sm font-bold">R</span>
+                        </div>
+                        <div>
+                            <div className="font-medium text-gray-900">Réseaux Informatiques</div>
+                            <div className="text-sm text-gray-500">Infrastructure et sécurité réseau</div>
+                        </div>
+                    </Link>
+                    
+                    <Link 
+                        to="/security" 
+                        className="flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-sm font-bold">S</span>
+                        </div>
+                        <div>
+                            <div className="font-medium text-gray-900">Sécurité</div>
+                            <div className="text-sm text-gray-500">Cybersécurité et audit</div>
+                        </div>
+                    </Link>
+                </div>
+            )}
+        </div>
+    )
+}
+
+function MobileServicesDropdown() {
+    const [isOpen, setIsOpen] = useState(false)
+    const location = useLocation()
+    
+    const isActive = location.pathname === '/services' || location.pathname === '/networks' || location.pathname === '/security'
+    
+    return (
+        <div className="space-y-2">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`flex items-center justify-between px-4 py-3 rounded-xl font-medium transition-all duration-200 w-full ${
+                    isActive 
+                        ? 'text-blue-600 bg-blue-50 border border-blue-100' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+            >
+                <span>Services</span>
+                <ChevronRight className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+            </button>
+            
+            {isOpen && (
+                <div className="ml-4 space-y-2">
+                    <Link 
+                        to="/services" 
+                        className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-xs font-bold">M</span>
+                        </div>
+                        <div>
+                            <div className="font-medium text-gray-900">Applications Mobile/Web</div>
+                            <div className="text-xs text-gray-500">Développement d'applications</div>
+                        </div>
+                    </Link>
+                    
+                    <Link 
+                        to="/networks" 
+                        className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-xs font-bold">R</span>
+                        </div>
+                        <div>
+                            <div className="font-medium text-gray-900">Réseaux Informatiques</div>
+                            <div className="text-xs text-gray-500">Infrastructure et sécurité réseau</div>
+                        </div>
+                    </Link>
+                    
+                    <Link 
+                        to="/security" 
+                        className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-xs font-bold">S</span>
+                        </div>
+                        <div>
+                            <div className="font-medium text-gray-900">Sécurité</div>
+                            <div className="text-xs text-gray-500">Cybersécurité et audit</div>
+                        </div>
+                    </Link>
+                </div>
+            )}
+        </div>
     )
 }

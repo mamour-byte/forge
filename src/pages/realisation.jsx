@@ -32,7 +32,7 @@ const projects = [
     description: "Application de consultation de lieux touristiques avec géolocalisation, itinéraires et recommandations personnalisées.",
     longDescription: "Application mobile immersive pour la découverte des sites touristiques au Sénégal, intégrant des fonctionnalités de géolocalisation, de recommandations personnalisées et d'itinéraires optimisés. Conçue pour offrir une expérience utilisateur fluide et intuitive.",
     duration: "3 mois",
-    team: "4 personnes",
+    team: "3 personnes",
     technologies: ["Flutter", "Dart", "Firebase", "PostgreSQL", "Socket.io", "Google Maps API"],
     results: {
       performance: "99.9% de disponibilité",
@@ -51,8 +51,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29tcHRhYmlsaXQlQzMlQTl8ZW58MHx8MHx8fDA%3D",
     description: "Application web de gestion de vente avec facturation et rapport de ventes en temps réel.",
     longDescription: "Outil multiutilisateur de gestion financière pour les entreprises, permettant la création de factures, le suivi des ventes et la génération de rapports détaillés. Conçu pour optimiser la gestion des flux financiers et améliorer la prise de décision.",
-    duration: "3 mois",
-    team: "4 personnes",
+    duration: "4 mois",
+    team: "3 personnes",
     technologies: ["PHP", "Laravel", "Orchid", "MySQL", "Git" , "GitHub", "Chart.js"],
     results: {
       performance: "Temps réel < 100ms",
@@ -71,8 +71,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1609427955204-d0a737cb2c1a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMG9yZGVyaW5nfGVufDB8fDB8fHww",
     description: "Plateforme d'apprentissage interactive avec cours vidéo, quizz et système de certification.",
     longDescription: "Environnement d'apprentissage numérique complet avec streaming vidéo adaptatif, système de quiz interactifs, suivi des progrès en temps réel et certification automatisée.",
-    duration: "7 mois",
-    team: "6 personnes",
+    duration: "2 mois",
+    team: "3 personnes",
     technologies: ["Next.js", "GraphQL", "Prisma", "MySQL", "Socket.io", "FFmpeg"],
     results: {
       performance: "95% de satisfaction",
@@ -91,8 +91,8 @@ const projects = [
     image: "https://images.unsplash.com/photo-1561484930-998b6a7b22e8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Dashboard temps réel pour la gestion intelligente des infrastructures urbaines.",
     longDescription: "Solution IoT complète pour villes intelligentes avec collecte de données en temps réel, visualisations avancées, prédictions basées sur l'IA et système d'alertes automatisé.",
-    duration: "8 mois",
-    team: "8 personnes",
+    duration: "2 mois",
+    team: "1 personnes",
     technologies: ["Dart", "Flutter", "API Rest"],
     results: {
       performance: "10M+ points de données/jour",
