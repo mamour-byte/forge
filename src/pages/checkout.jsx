@@ -1,10 +1,16 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useCart } from '../context/CartContext'
 import { Trash2, Plus, Minus, Send, X } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, hasEmailJsConfig } from '../config/email'
 
 export default function Checkout() {
+  // Initialiser EmailJS une seule fois
+  useEffect(() => {
+    if (hasEmailJsConfig()) {
+      emailjs.init(EMAILJS_PUBLIC_KEY)
+    }
+  }, [])
   const { items, updateQuantity, removeItem, clearCart } = useCart()
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
@@ -44,19 +50,21 @@ export default function Checkout() {
     }
     try {
       if (hasEmailJsConfig()) {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         setStatus('success')
+        clearCart()
+        setShowForm(false)
       } else {
         window.location.href = mailtoHref
         setStatus('success')
+        clearCart()
+        setShowForm(false)
       }
-      clearCart()
-      setShowForm(false)
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('EmailJS send error:', err)
       setStatus('error')
+      alert('Erreur lors de l’envoi du mail : ' + (err?.text || err?.message || 'Erreur inconnue'))
     } finally {
       setSubmitting(false)
     }

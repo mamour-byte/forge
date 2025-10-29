@@ -16,7 +16,7 @@ export default function Home() {
         <TeamSection />
       </section>
       <StatsSection />
-      <GalerySection />
+      {/* <GalerySection /> */}
       <WhatsAppButton />
     </main>
   );
