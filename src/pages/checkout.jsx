@@ -8,7 +8,12 @@ export default function Checkout() {
   // Initialiser EmailJS une seule fois
   useEffect(() => {
     if (hasEmailJsConfig()) {
-      emailjs.init(EMAILJS_PUBLIC_KEY)
+      try {
+        emailjs.init(EMAILJS_PUBLIC_KEY)
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('EmailJS init error', err)
+      }
     }
   }, [])
   const { items, updateQuantity, removeItem, clearCart } = useCart()
@@ -39,12 +44,50 @@ export default function Checkout() {
       // eslint-disable-next-line no-console
       console.log('EmailJS configured:', hasEmailJsConfig())
     } catch {}
+    // Construire un order id simple et des lignes HTML pour l'email
+    const orderId = `ORD-${Date.now().toString(36).toUpperCase()}`
+
+    // Si tes items ont un prix, adapte ci-dessous. Ici on tente de lire item.price sinon 0
+    const rowsHtml = items.map(i => {
+      const price = (i.price != null) ? Number(i.price) : 0
+      const qty = Number(i.quantity || 1)
+      const total = (price * qty).toFixed(2)
+      const img = i.image || ''
+      return `
+        <table style="width:100%; border-collapse:collapse">
+          <tr style="vertical-align: top">
+            <td style="padding:12px 8px 0 4px; display:inline-block; width:max-content">
+              <img style="height:64px" src="${img}" alt="item" />
+            </td>
+            <td style="padding:12px 8px 0 8px; width:100%">
+              <div style="font-size:15px; color:#222">${i.name}</div>
+              <div style="font-size:13px; color:#888; padding-top:4px">QTY: ${qty}</div>
+            </td>
+            <td style="padding:12px 4px 0 0; white-space:nowrap">
+              <strong>${total}</strong>
+            </td>
+          </tr>
+        </table>
+      `
+    }).join('\n')
+
+    // Calculs basiques de coût (si tu as des règles réelles, adapte ici)
+    const subtotal = items.reduce((acc, it) => acc + ((Number(it.price) || 0) * (Number(it.quantity) || 1)), 0)
+    const shipping = 0.00
+    const tax = 0.00
+    const totalCost = (subtotal + shipping + tax).toFixed(2)
+
     const templateParams = {
       customer_name: form.name,
       customer_email: form.email,
       customer_phone: form.phone,
       customer_message: form.message,
-      order_lines: orderSummary.map(o => `${o.name} x${o.quantity}`).join('\n'),
+      order_id: orderId,
+      order_rows: rowsHtml, // utilisez {{{order_rows}}} dans le template pour désactiver l'échappement
+      cost_shipping: shipping.toFixed(2),
+      cost_tax: tax.toFixed(2),
+      cost_total: totalCost,
+      email: form.email,
       to_email: 'mamourf958@gmail.com',
       reply_to: form.email
     }
