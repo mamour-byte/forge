@@ -101,9 +101,9 @@ export default function Layout() {
                     {/* Mobile Menu */}
                     <div className={`lg:hidden transition-all duration-300 ease-in-out ${
                         menuOpen 
-                            ? 'max-h-96 opacity-100 visible' 
-                            : 'max-h-0 opacity-0 invisible'
-                    } overflow-hidden`}>
+                            ? 'opacity-100 visible' 
+                            : 'opacity-0 invisible'
+                    }`} style={{ maxHeight: menuOpen ? '80vh' : 0, overflowY: menuOpen ? 'auto' : 'hidden' }}>
                         <div className="py-4 space-y-2 border-t border-gray-100">
                             <MobileNavLink to="/" label="Accueil" />
                             <MobileServicesDropdown />
