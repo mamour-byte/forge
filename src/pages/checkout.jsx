@@ -75,6 +75,7 @@ export default function Checkout() {
             <ul className="divide-y">
               {items.map(item => (
                 <li key={item.id} className="py-4 flex items-center gap-4">
+                  <img src={item.image} alt={item.name} className="w-14 h-14 rounded-md object-cover flex-shrink-0" />
                   <div className="flex-1">
                     <div className="font-medium">{item.name}</div>
                     <div className="text-sm text-gray-500">Quantité</div>
@@ -117,7 +118,14 @@ export default function Checkout() {
               <textarea className="w-full border rounded-lg px-3 py-2" rows="4" placeholder="Message (optionnel)" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
               <div className="text-sm text-gray-600">
                 <div className="font-medium mb-1">Produits sélectionnés:</div>
-                {orderSummary.map(o => (<div key={o.id}>- {o.name} x{o.quantity}</div>))}
+                <ul className="space-y-2">
+                  {items.map(i => (
+                    <li key={i.id} className="flex items-center gap-3">
+                      <img src={i.image} alt={i.name} className="w-10 h-10 rounded object-cover" />
+                      <span>{i.name} x{i.quantity}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
               <div className="flex items-center gap-2 justify-end">
                 <a href={mailtoHref} className="text-blue-600 text-sm underline">Utiliser mon client email</a>

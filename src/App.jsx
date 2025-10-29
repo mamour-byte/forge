@@ -10,6 +10,7 @@ import Security from './pages/security'
 import Products from './pages/products'
 import Contact from './pages/contact'
 import Realisation from './pages/realisation'
+import ProductDetail from './pages/productDetail'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="networks" element={<Networks />} />
           <Route path="security" element={<Security />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<ProductDetail />} />
           <Route path="realisation" element={<Realisation />} />
           <Route path="contact" element={<Contact />} />
           <Route path="checkout" element={<Checkout />} />

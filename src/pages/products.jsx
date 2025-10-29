@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Package, Camera, Bell, Lock, MonitorSpeaker, Router, Phone, 
@@ -22,9 +23,9 @@ const productCategories = [
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedProduct, setSelectedProduct] = useState(null)
   const [products, setProducts] = useState([])
   const { addItem } = useCart()
+  const navigate = useNavigate()
 
   useEffect(() => {
     setProducts(data)
@@ -106,15 +107,15 @@ export default function Products() {
 
                   <div className="mt-auto">
                     <div className="flex items-center justify-between mb-3">
-                      {/* <span className="text-xl font-bold text-blue-600">{product.price}</span>
+                      <span className="text-xl font-bold text-blue-600">{product.price}</span>
                       {product.originalPrice && (
                         <span className="text-sm line-through text-gray-400">{product.originalPrice}</span>
-                      )} */}
+                      )}
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => setSelectedProduct(product)}
+                    <button
+                      onClick={() => navigate(`/products/${product.id}`)}
                         className="w-full py-2.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 transition flex items-center justify-center gap-2"
                       >
                         <Eye className="w-4 h-4" />
@@ -136,51 +137,7 @@ export default function Products() {
         )}
       </div>
 
-      {/* Modal */}
-      <AnimatePresence>
-        {selectedProduct && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-            onClick={() => setSelectedProduct(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-xl p-6 max-w-2xl w-full shadow-lg"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
-                <button onClick={() => setSelectedProduct(null)} className="text-gray-500 hover:text-gray-700">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <img src={selectedProduct.image} alt={selectedProduct.name} className="rounded-lg mb-6 object-cover w-full h-80" />
-
-              <p className="text-gray-600 mb-6">{selectedProduct.description}</p>
-
-              <ul className="space-y-2 mb-6">
-                {selectedProduct.features.map((f, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle className="w-4 h-4 text-green-500" /> {f}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex justify-end items-center mb-6">
-                <button onClick={() => { addItem(selectedProduct, 1); setSelectedProduct(null) }} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-                  <ShoppingCart className="w-4 h-4" /> Ajouter au panier
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Détails produits affichés sur une page dédiée désormais */}
     </div>
   )
 }
