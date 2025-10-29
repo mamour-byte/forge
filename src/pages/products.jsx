@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Package, Camera, Bell, Lock, MonitorSpeaker, Router, Phone, 
   Search, ChevronDown, ShoppingCart, Eye, X, CheckCircle, Star
 } from 'lucide-react'
+import data from '../assets/products.json'
+import { useCart } from '../context/CartContext'
 
 const productCategories = [
   { id: 'all', name: 'Tous' },
@@ -15,38 +17,18 @@ const productCategories = [
   { id: 'telecom', name: 'Télécom' }
 ]
 
-const products = [
-  {
-    id: 1,
-    name: "Caméra WiFi Tenda",
-    category: "cameras",
-    price: "45 000 FCFA",
-    originalPrice: "55 000 FCFA",
-    image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=400&h=300&fit=crop",
-    rating: 4.5,
-    reviews: 23,
-    description: "Caméra de surveillance WiFi haute qualité avec vision nocturne et détection intelligente.",
-    features: ["Full HD", "Vision nocturne", "Détection mouvement"],
-    inStock: true,
-  },
-  {
-    id: 2,
-    name: "Kit d'Alarme Sans Fil",
-    category: "alarms",
-    price: "180 000 FCFA",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&h=300&fit=crop",
-    rating: 4.6,
-    reviews: 32,
-    description: "Kit d’alarme complet sans fil avec détecteurs et sirène puissante.",
-    features: ["8 détecteurs", "110dB", "Application mobile"],
-    inStock: true,
-  },
-]
+
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [products, setProducts] = useState([])
+  const { addItem } = useCart()
+
+  useEffect(() => {
+    setProducts(data)
+  }, [])
 
   const filteredProducts = products.filter(p =>
     (selectedCategory === 'all' || p.category === selectedCategory) &&
@@ -94,42 +76,59 @@ export default function Products() {
         {filteredProducts.length === 0 ? (
           <div className="text-center py-20 text-gray-500">Aucun produit trouvé</div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product, i) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-4 flex flex-col"
+                className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden flex flex-col border border-gray-100"
               >
-                <img src={product.image} alt={product.name} className="rounded-lg mb-4 object-cover h-48 w-full" />
-
-                <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
-                <p className="text-sm text-gray-500 mb-4 line-clamp-2">{product.description}</p>
-
-                <div className="flex items-center gap-2 text-yellow-400 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-yellow-400' : 'text-gray-300'}`} />
-                  ))}
-                  <span className="text-gray-500 text-sm">{product.rating}</span>
+                <div className="relative w-full h-72 overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
 
-                <div className="mt-auto">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl font-bold text-blue-600">{product.price}</span>
-                    {product.originalPrice && (
-                      <span className="text-sm line-through text-gray-400">{product.originalPrice}</span>
-                    )}
+                <div className="p-4 flex flex-col gap-3 flex-1">
+                  <h3 className="font-semibold text-base sm:text-lg">{product.name}</h3>
+                  <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
+
+                  <div className="flex items-center gap-2 text-yellow-400">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-yellow-400' : 'text-gray-300'}`} />
+                    ))}
+                    <span className="text-gray-500 text-sm">{product.rating}</span>
                   </div>
 
-                  <button
-                    onClick={() => setSelectedProduct(product)}
-                    className="w-full py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition flex items-center justify-center gap-2"
-                  >
-                    <Eye className="w-4 h-4" />
-                    Voir détails
-                  </button>
+                  <div className="mt-auto">
+                    <div className="flex items-center justify-between mb-3">
+                      {/* <span className="text-xl font-bold text-blue-600">{product.price}</span>
+                      {product.originalPrice && (
+                        <span className="text-sm line-through text-gray-400">{product.originalPrice}</span>
+                      )} */}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => setSelectedProduct(product)}
+                        className="w-full py-2.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 transition flex items-center justify-center gap-2"
+                      >
+                        <Eye className="w-4 h-4" />
+                        Détails
+                      </button>
+                      <button
+                        onClick={() => addItem(product, 1)}
+                        className="w-full py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition flex items-center justify-center gap-2"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        Ajouter
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -161,7 +160,7 @@ export default function Products() {
                 </button>
               </div>
 
-              <img src={selectedProduct.image} alt={selectedProduct.name} className="rounded-lg mb-6 object-cover w-full h-56" />
+              <img src={selectedProduct.image} alt={selectedProduct.name} className="rounded-lg mb-6 object-cover w-full h-80" />
 
               <p className="text-gray-600 mb-6">{selectedProduct.description}</p>
 
@@ -173,10 +172,9 @@ export default function Products() {
                 ))}
               </ul>
 
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-2xl font-bold text-blue-600">{selectedProduct.price}</span>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-                  <ShoppingCart className="w-4 h-4" /> Ajouter
+              <div className="flex justify-end items-center mb-6">
+                <button onClick={() => { addItem(selectedProduct, 1); setSelectedProduct(null) }} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+                  <ShoppingCart className="w-4 h-4" /> Ajouter au panier
                 </button>
               </div>
             </motion.div>

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
+import { ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 import { Menu, X, ChevronRight, Mail, Phone, MapPin, Github, Linkedin, Twitter, ChevronDown } from 'lucide-react'
 import ScrollToTop from '../components/ScrollToTop'
 import CookieBanner from '../components/CookieBanner'
 import CookieSettings from '../components/CookieSettings'
 
 export default function Layout() {
+    const { totalItems } = useCart?.() || { totalItems: 0 }
     const [menuOpen, setMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
@@ -67,6 +70,12 @@ export default function Layout() {
                             <NavLink to="/products" label="Produits" />
                             <NavLink to="/realisation" label="Réalisations" />
                             <NavLink to="/contact" label="Contact" />
+                            <Link to="/checkout" className="relative ml-2 px-3 py-2 rounded-xl hover:bg-gray-50 transition-colors">
+                                <ShoppingCart size={20} />
+                                {totalItems > 0 && (
+                                    <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full px-1.5 py-0.5">{totalItems}</span>
+                                )}
+                            </Link>
                             
                             {/* CTA Button */}
                             <Link 
@@ -101,6 +110,7 @@ export default function Layout() {
                             <MobileNavLink to="/products" label="Produits" />
                             <MobileNavLink to="/realisation" label="Réalisations" />
                             <MobileNavLink to="/contact" label="Contact" />
+                            <MobileNavLink to="/checkout" label={`Panier (${totalItems || 0})`} />
                             
                             <div className="pt-4 mt-4 border-t border-gray-100">
                                 <Link 
