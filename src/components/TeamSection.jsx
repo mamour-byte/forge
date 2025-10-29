@@ -170,7 +170,7 @@ export default function TeamSection() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span>Discuter avec notre équipe</span>
+          <span><a href="mailto:mamourf958@gmail.com">Discuter avec notre équipe</a></span>
           <ArrowRight className="w-5 h-5" />
         </motion.button>
       </motion.div>

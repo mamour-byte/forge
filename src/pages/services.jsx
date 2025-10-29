@@ -116,7 +116,7 @@ const services = [
     title: "Design UX/UI",
     shortDescription: "Expériences utilisateur intuitives et designs modernes.",
     icon: <Palette className="w-8 h-8" />,
-    color: "pink",
+    color: "red",
     category: "Design",
     features: [
       "Audit UX existant",
@@ -165,26 +165,26 @@ const services = [
   },
   {
     id: 6,
-    title: "Installation Réseau & Sécurité",
-    shortDescription: "Installation de tout type de reseau Informatique et vidéo Surveillance",
+    title: "API & Intégrations",
+    shortDescription: "Développement et intégration d'API robustes et sécurisées.",
     icon: <Settings className="w-8 h-8" />,
-    color: "brown",
-    category: "Réseau & Sécurité",
+    color: "gray",
+    category: "Support",
     features: [
-      "Administartion Réseau",
-      "Installation Vidéo Surveillance",
-      "Interphone , Vidéophone & Contrôle d'accès",
-      "Maintenance Informatique",
-      "Monitoring 24/7",
-      ""
+      "Développement d'API RESTful",
+      "Intégration de services tiers",
+      "Authentification & sécurité",
+      "Documentation API",
+      "Tests & validation",
+      "Maintenance & support"
     ],
-    technologies: ["Ubiquiti", "Mikrotik", "Cisco", "Hikvision", "Dahua", "Axis"],
+    technologies: ["Node.js", "Express", "GraphQL", "Postman", "Swagger"],
     deliverables: [
-      "",
-      "Rapports mensuels",
-      "Hotline dédiée",
-      "Interventions d'urgence",
-      "Conseils d'évolution"
+      "API documentée",
+      "Clés d'API sécurisées",
+      "Tests automatisés",
+      "Guide d'intégration",
+      "Support technique"
     ],
     timeline: "Service continu",
     startingPrice: ""
