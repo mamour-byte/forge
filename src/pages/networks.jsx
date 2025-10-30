@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Network, 
@@ -277,6 +278,12 @@ export default function Networks() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <SEO
+        title="Réseaux – Forge | Câblage, Serveurs, WiFi Pro"
+        description="Installation de réseaux professionnels : câblage structuré, fibre, configuration serveurs, WiFi haute performance et maintenance."
+        keywords="réseau, câblage, fibre, wifi, serveur, Forge"
+        url="https://forge.sn/networks"
+      />
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5" />

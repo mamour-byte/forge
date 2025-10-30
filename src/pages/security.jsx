@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Shield, 
@@ -279,6 +280,12 @@ export default function Security() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50">
+      <SEO
+        title="Sécurité – Forge | Vidéosurveillance, Alarme & Contrôle d'accès"
+        description="Solutions professionnelles de sécurité : vidéosurveillance, alarmes, vidéophones et contrôle d'accès adaptées aux entreprises et résidences."
+        keywords="sécurité, vidéosurveillance, alarmes, contrôle d'accès, vidéophone, Forge"
+        url="https://forge.sn/security"
+      />
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-red-600/5 to-blue-600/5" />

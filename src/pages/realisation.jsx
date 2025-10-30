@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Calendar, Users, Zap, Filter, Search, ArrowRight, Play, Award, TrendingUp } from 'lucide-react';
 
@@ -154,6 +155,12 @@ export default function Realisation() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Réalisations – Forge | Portfolio & Projets"
+        description="Découvrez les projets et réalisations de Forge : e-commerce, applications mobiles et solutions sur mesure pour nos clients."
+        keywords="réalisations, portfolio, projets, Forge, cas client"
+        url="https://forge.sn/realisation"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

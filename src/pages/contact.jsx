@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { form } from 'framer-motion/client';
 import { BsWhatsapp } from 'react-icons/bs';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -96,6 +97,12 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Contact – Forge | Parlons de votre projet"
+        description="Contactez Forge — agence digitale à Dakar. Demandez un devis, planifiez une réunion ou posez vos questions. Réponse sous 24h."
+        keywords="contact, devis, agence digitale, Forge, Dakar"
+        url="https://forge.sn/contact"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

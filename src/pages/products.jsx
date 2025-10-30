@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import SEO from '../components/SEO'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
@@ -39,6 +40,12 @@ export default function Products() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
+      <SEO
+        title="Nos Produits – Forge | Équipements de sécurité & réseau"
+        description="Équipements de sécurité et réseau de qualité professionnelle — caméras, alarmes, interphones, solutions réseau et télécoms. Découvrez notre catalogue."
+        keywords="produits sécurité, caméras, alarmes, interphones, réseau, télécom"
+        url="https://forge.sn/products"
+      />
       {/* Header */}
       <section className="text-center py-16">
         <h1 className="text-4xl font-semibold mb-2">Nos Produits</h1>

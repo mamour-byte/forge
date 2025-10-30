@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from 'react'
+import SEO from '../components/SEO'
 import { useCart } from '../context/CartContext'
 import { Trash2, Plus, Minus, Send, X } from 'lucide-react'
 import emailjs from '@emailjs/browser'
@@ -115,6 +116,11 @@ export default function Checkout() {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <SEO
+        title="Validation de la demande – Forge | Checkout"
+        description="Finalisez votre demande de produits ou commande auprès de Forge. Envoyez votre panier et obtenez un devis personnalisé."
+        url="https://forge.sn/checkout"
+      />
       <h1 className="text-3xl font-semibold mb-8">Validation de la demande</h1>
 
       <div className="grid lg:grid-cols-3 gap-8">

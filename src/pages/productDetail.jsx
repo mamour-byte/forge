@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import SEO from '../components/SEO'
 import { useParams } from 'react-router-dom'
 import data from '../assets/products.json'
 import { Star, CheckCircle, ShoppingCart } from 'lucide-react'
@@ -12,6 +13,11 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-20 text-center text-gray-600">
+        <SEO
+          title="Produit introuvable – Forge"
+          description="Le produit demandé est introuvable dans notre catalogue."
+          url={`https://forge.sn/products`}
+        />
         Produit introuvable.
       </div>
     )
@@ -23,6 +29,12 @@ export default function ProductDetail() {
 
   return (
     <div className="container mx-auto px-4 py-10">
+      <SEO
+        title={`${product.name} – Forge`}
+        description={product.description}
+        image={(images && images[0]) || product.image}
+        url={`https://forge.sn/products/${product.id}`}
+      />
       <div className="grid lg:grid-cols-2 gap-10">
         <ProductGallery images={images} name={product.name} />
 

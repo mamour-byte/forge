@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Code, 
@@ -278,6 +279,12 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Nos Services – Forge | Développement, Design, Cloud, Consulting"
+        description="Découvrez les services de Forge : développement web et mobile, design UX/UI, solutions cloud, consulting digital et API."
+        keywords="services digitaux, développement web, design UX, cloud, consulting, Forge"
+        url="https://forge.sn/services"
+      />
       {/* Hero Section */}
       {/* <section className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
