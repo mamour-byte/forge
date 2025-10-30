@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://forge-sigma.vercel.app/sitemap.xml
