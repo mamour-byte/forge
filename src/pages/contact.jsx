@@ -72,9 +72,9 @@ export default function Contact() {
     'Site Web / Landing Page',
     'Application Web',
     'Application Mobile',
-    'E-commerce',
-    'Refonte/Modernisation',
     'Consulting/Audit',
+    'Installation Système de sécurité',
+    'Installation Réseau',
     'Autre'
   ];
 
@@ -172,7 +172,7 @@ export default function Contact() {
                 title: "Email",
                 description: "Envoyez-nous un message détaillé",
                 contact: "contact@forge.dev",
-                action: "Envoyer un email",
+                // action: "Envoyer un email",
                 color: "blue"
               },
               {
@@ -180,7 +180,7 @@ export default function Contact() {
                 title: "Téléphone",
                 description: "Discutons directement de votre projet",
                 contact: "+221 77 856 98 23",
-                action: "Appeler maintenant",
+                // action: "Appeler maintenant",
                 color: "green"
               },
               {
@@ -188,7 +188,7 @@ export default function Contact() {
                 title: "Rendez-vous",
                 description: "Planifions une réunion en visio",
                 contact: "Calendly",
-                action: "Réserver un créneau",
+                // action: "Réserver un créneau",
                 color: "purple"
               },
               {
@@ -196,7 +196,7 @@ export default function Contact() {
                 title: "Chat Live",
                 description: "Support instantané pendant les heures ouvrées",
                 contact: "En ligne",
-                action: "Démarrer le chat",
+                // action: "Démarrer le chat",
                 color: "orange"
               }
             ].map((method, index) => (
@@ -217,10 +217,10 @@ export default function Contact() {
                 <div className="mb-4">
                   <span className="font-semibold text-gray-900">{method.contact}</span>
                 </div>
-                <button className={`flex items-center space-x-2 text-${method.color}-600 font-medium hover:text-${method.color}-700 transition-colors group/btn`}>
+                {/* <button className={`flex items-center space-x-2 text-${method.color}-600 font-medium hover:text-${method.color}-700 transition-colors group/btn`}>
                   <span>{method.action}</span>
                   <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </button> */}
               </motion.div>
             ))}
           </div>
