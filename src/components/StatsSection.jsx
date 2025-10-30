@@ -10,11 +10,9 @@ export default function StatsSection() {
   ];
 
   const companies = [
-    '/logos/company1.png',
-    '/logos/company2.png',
-    '/logos/company3.png',
-    '/logos/company4.png',
-    '/logos/company5.png',
+    'logos/Ethic.png',
+    'logos/Alu.png',
+    'logos/SRT.png',
   ];
 
   return (
@@ -51,16 +49,16 @@ export default function StatsSection() {
             transition={{ repeat: Infinity, duration: 15, ease: 'linear' }}
             >
             {[...companies, ...companies].map((logo, index) => (
-                <div
-                key={index}
-                className="flex-shrink-0 w-1/4 flex justify-center items-center"
-                >
-                <img
-                    src={logo}
-                    alt="Entreprise partenaire"
-                    className="h-16 object-contain grayscale hover:grayscale-0 transition"
-                />
-                </div>
+        <div
+        key={index}
+        className="flex-shrink-0 w-1/3 md:w-40 lg:w-48 flex justify-center items-center"
+        >
+        <img
+          src={logo}
+          alt="Entreprise partenaire"
+          className="h-20 md:h-24 lg:h-28 object-contain grayscale hover:grayscale-0 transition"
+        />
+        </div>
             ))}
             </motion.div>
         </div>
